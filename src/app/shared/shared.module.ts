@@ -67,6 +67,7 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatSlideToggleModule,
         MatSortModule,
     ],
+
     exports: [
         MatToolbarModule,
         MatButtonModule,
