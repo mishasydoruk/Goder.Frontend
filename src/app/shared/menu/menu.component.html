@@ -1,0 +1,32 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport
+        [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+        [mode]="(isHandset$ | async) ? 'over' : 'side'"
+        [opened]="(isHandset$ | async) === false">
+      <mat-toolbar><strong>Goder</strong></mat-toolbar>
+      <mat-nav-list>
+        <a mat-list-item href="#">home</a>
+        <a mat-list-item href="#">profile</a>
+        <a mat-list-item href="#">problems</a>
+        <a mat-list-item href="#">solved problems</a>
+        <a mat-list-item href="#">help</a>
+        <a mat-list-item href="#">solution queue</a>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <mat-toolbar>
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+          *ngIf="isHandset$ | async">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <!-- Upper content -->
+      </mat-toolbar>
+      <!-- Content of page here -->
+    </mat-sidenav-content>
+
+  </mat-sidenav-container>
+  

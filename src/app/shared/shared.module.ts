@@ -31,10 +31,12 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSortModule } from '@angular/material/sort';
 import { MatNativeDateModule } from '@angular/material/core';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     declarations: [],
     imports: [
+        NoopAnimationsModule,
         CommonModule,
         MatToolbarModule,
         MatButtonModule,
