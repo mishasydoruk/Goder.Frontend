@@ -3,6 +3,7 @@ import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, of, from } from 'rxjs';
 import { mergeMap, filter } from 'rxjs/operators';
+import { UserService } from '../services/user.service';
 
 @Injectable({
     providedIn: 'root',
@@ -12,13 +13,14 @@ export class AuthService {
     public user$: Observable<firebase.User>;
     public isSignedIn = false;
 
-    constructor(private fireAuth: AngularFireAuth) {
+    constructor(private fireAuth: AngularFireAuth, private userService: UserService) {
         this.user$ = fireAuth.authState;
 
         this.user$.subscribe((user) => {
             if (user) {
                 this.isSignedIn = true;
                 this.currentUser = user;
+                this.userService.registerUser(user);
             } else {
                 this.isSignedIn = false;
                 this.currentUser = null;
