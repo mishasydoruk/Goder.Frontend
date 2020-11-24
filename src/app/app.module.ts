@@ -9,11 +9,10 @@ import { AuthService } from './core/auth/auth.service';
 import { CoreModule } from './core/core.module';
 import { TokenInterceptorService } from './core/auth/token-interceptor.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MenuComponent } from './shared/menu/menu.component';
 import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
-    declarations: [AppComponent, MenuComponent],
+    declarations: [AppComponent],
     imports: [BrowserModule, AppRoutingModule, ScenesModule, SharedModule, CoreModule, HttpClientModule, LayoutModule],
     providers: [
         AuthService,
