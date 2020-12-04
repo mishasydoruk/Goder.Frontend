@@ -33,9 +33,10 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatNativeDateModule } from '@angular/material/core';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MenuComponent } from './components/menu/menu.component';
+import { ProblemsPageComponent } from './../scenes/components/problems-page/problems-page.component';
 
 @NgModule({
-    declarations: [MenuComponent],
+    declarations: [MenuComponent, ProblemsPageComponent],
     imports: [
         NoopAnimationsModule,
         CommonModule,
@@ -103,6 +104,7 @@ import { MenuComponent } from './components/menu/menu.component';
         MatSlideToggleModule,
         MatSortModule,
         MenuComponent,
+        ProblemsPageComponent,
     ],
 })
 export class SharedModule {}
