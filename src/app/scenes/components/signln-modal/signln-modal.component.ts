@@ -1,28 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/core/auth/auth.service';
 import { SimpleModalComponent } from 'ngx-simple-modal';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
     selector: 'app-signln-modal',
     templateUrl: './signln-modal.component.html',
     styleUrls: ['./signln-modal.component.sass'],
 })
-export class SignlnModalComponent extends SimpleModalComponent<null, boolean> {
-    constructor(public auth: AuthService) {
-        super();
-    }
+export class SignlnModalComponent {
+    constructor(public auth: AuthService, public dialogRef: MatDialogRef<SignlnModalComponent>) {}
 
     ngOnInit(): void {}
 
     public googleLogin(): void {
-        this.auth.signInWithGoogle().then((status) => {
-            this.result = status;
-            this.close();
-        });
-    }
-
-    public cancel(): void {
-        this.result = false;
-        this.close();
+        this.auth.signInWithGoogle().then((status) => {});
     }
 }
