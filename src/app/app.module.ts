@@ -13,7 +13,16 @@ import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
     declarations: [AppComponent],
-    imports: [BrowserModule, AppRoutingModule, ScenesModule, SharedModule, CoreModule, HttpClientModule, LayoutModule],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ScenesModule,
+        SharedModule,
+        CoreModule,
+        HttpClientModule,
+        LayoutModule,
+        AppRoutingModule,
+    ],
     providers: [
         AuthService,
         {
