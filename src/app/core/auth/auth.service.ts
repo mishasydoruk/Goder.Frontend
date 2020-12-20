@@ -12,11 +12,13 @@ export class AuthService {
     public currentUser: firebase.User;
     public user$: Observable<firebase.User>;
     public isSignedIn = false;
+    public hasLoaded = false;
 
     constructor(private fireAuth: AngularFireAuth, private userService: UserService) {
         this.user$ = fireAuth.authState;
 
         this.user$.subscribe((user) => {
+            this.hasLoaded = true;
             if (user) {
                 this.isSignedIn = true;
                 this.currentUser = user;

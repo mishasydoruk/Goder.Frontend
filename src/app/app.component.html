@@ -1,3 +1,5 @@
+<span *ngIf="authService.hasLoaded">
+
 <div class="container" *ngIf ="authService.isSignedIn">
     <div>
         <app-menu></app-menu>
@@ -14,3 +16,5 @@
         Sign in 
       </button>
 </div>
+
+</span>
