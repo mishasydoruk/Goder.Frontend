@@ -1,9 +1,11 @@
+import { SolutionResult } from './enums/solutionResults';
+
 export interface Solution {
-    id: number;
-    created_at: string;
-    result: string;
-    execution_time: number;
-    execution_memory: number;
-    last_executed_test: number;
+    id: string;
+    createdAt: string;
+    result?: SolutionResult;
+    executionTime: number;
+    executionMemory: number;
+    lastExecutedTest: number;
     script: string;
 }

@@ -7,9 +7,11 @@ import { SomeFeatureComponent } from './components/some-feature/some-feature.com
 import { ProblemsPageComponent } from './components/problems-page/problems-page.component';
 import { ProblemPageComponent } from './components/problem-page/problem-page.component';
 import { CodeEditorModule } from '@ngstack/code-editor';
+import { RouterModule } from '@angular/router';
+
 @NgModule({
     declarations: [SomeFeatureComponent, ProblemsPageComponent, SignlnModalComponent, ProblemPageComponent],
-    imports: [CommonModule, SharedModule, CodeEditorModule.forRoot()],
-    exports: [SharedModule, ProblemsPageComponent, ProblemPageComponent],
+    imports: [CommonModule, SharedModule, CodeEditorModule.forRoot(), RouterModule],
+    exports: [ProblemsPageComponent, ProblemPageComponent],
 })
 export class ScenesModule {}

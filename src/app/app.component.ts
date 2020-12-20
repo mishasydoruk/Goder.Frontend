@@ -13,6 +13,6 @@ export class AppComponent {
     constructor(public authService: AuthService, public dialog: MatDialog) {}
 
     async signIn(): Promise<void> {
-        const dialogRef = this.dialog.open(SignlnModalComponent);
+        this.dialog.open(SignlnModalComponent);
     }
 }

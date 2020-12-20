@@ -1,20 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute } from '@angular/router';
 import { CodeModel } from '@ngstack/code-editor';
+import { HttpService } from 'src/app/core/services/http.service';
+import { SolutionResult } from 'src/app/shared/models/enums/solutionResults';
+import { SolutionCreate } from 'src/app/shared/models/solutionCreate';
 import { Problem } from '../../../shared/models/problem';
-import { Test } from '../../../shared/models/test';
-/// How to input content
-
-/// some Data
-
-const SomeProblem: Problem = {
-    id: 0,
-    name: 'Sightseeing Trip ',
-    description: 'Some problem. Try to solve it',
-    time_limit: 0.5,
-    memory_limit: 64,
-};
-
-const SomeTest: Test = { id: 0, input: '3 123 123 890', output: ' .!.' };
 
 @Component({
     selector: 'app-problem-page',
@@ -22,28 +13,53 @@ const SomeTest: Test = { id: 0, input: '3 123 123 890', output: ' .!.' };
     styleUrls: ['./problem-page.component.sass'],
 })
 export class ProblemPageComponent implements OnInit {
-    constructor() {}
+    public solutionResults = SolutionResult;
+    public currentProblem: Problem;
+    private solution: SolutionCreate;
 
-    ngOnInit(): void {}
-
-    theme = 'vs';
-    some_problem: Problem = SomeProblem;
-    some_test: Test = SomeTest;
-
-    model: CodeModel = {
+    public editorTheme = 'vs';
+    public editorModel: CodeModel = {
         language: 'python',
         uri: 'main.py',
         value: '# write code here',
     };
-
-    options = {
+    public editorOptions = {
         contextmenu: true,
         minimap: {
             enabled: true,
         },
     };
 
+    public solutionColumns: string[] = ['createdAt', 'result'];
+    public userSolutions = new MatTableDataSource();
+
+    constructor(private httpService: HttpService, private route: ActivatedRoute) {}
+
+    ngOnInit(): void {
+        const problemId = this.route.snapshot.paramMap.get('id');
+        this.solution = {
+            problemId: problemId,
+            script: '',
+        };
+        this.httpService.getFullRequest<Problem>(`/api/problem/${problemId}`).subscribe((res) => {
+            this.currentProblem = res.body;
+            this.userSolutions.data = this.currentProblem.solutions;
+        });
+    }
+
     onCodeChanged(value) {
-        console.log('CODE', value);
+        this.solution.script = value;
+    }
+
+    public submitSolution(): void {
+        console.log('submit');
+        this.httpService.postFullRequest<SolutionCreate, any>('/api/solution', this.solution).subscribe(
+            (res) => {
+                console.log(res);
+            },
+            (err) => {
+                console.log(err);
+            }
+        );
     }
 }

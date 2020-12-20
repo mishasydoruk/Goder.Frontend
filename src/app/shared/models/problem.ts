@@ -1,7 +1,12 @@
+import { Test } from './test';
+import { Solution } from './solution';
+
 export interface Problem {
-    id: number;
+    id: string;
     name: string;
     description: string;
-    time_limit: number;
-    memory_limit: number;
+    timeLimit: number;
+    memoryLimit: number;
+    tests: Test[];
+    solutions: Solution[];
 }
