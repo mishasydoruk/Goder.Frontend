@@ -1,0 +1,41 @@
+<mat-card class="statement">
+    <div class="title">
+        <mat-card-title> {{ some_problem.name }} </mat-card-title>
+        <mat-card-subtitle> Time limit: {{some_problem.time_limit}} second</mat-card-subtitle>
+        <mat-card-subtitle>Memory limit: {{some_problem.memory_limit}} MB</mat-card-subtitle>
+    </div>
+    <mat-card-content class="content">
+        <p>
+            {{ some_problem.description }}
+        </p>
+
+        <h3 class="sub-header"> Sample </h3>
+        <div class="sample">
+            <table>
+                <tr>
+                  <th>Input</th>
+                  <th>Output</th>
+                </tr>
+                <tr>
+                  <td>
+                   {{ some_test.input }}
+                  </td>
+                  <td>
+                    {{some_test.output}}
+                </td>
+                </tr>
+              </table>
+        </div>
+
+    </mat-card-content>
+</mat-card>
+
+<div class="editor">
+    <ngs-code-editor
+    [theme]="theme"
+    [codeModel]="model"
+    [options]="options"
+    (valueChanged)="onCodeChanged($event)">
+    </ngs-code-editor>
+</div>
+<button mat-button color="primary"> Submit </button>
