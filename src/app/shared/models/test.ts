@@ -1,5 +1,5 @@
 export interface Test {
-    id: number;
+    id: string;
     input: string;
     output: string;
 }
